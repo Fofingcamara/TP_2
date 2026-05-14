@@ -1,8 +1,34 @@
 #include "entrypoint.h"
+#include "Jeu.h"
+#include "Menu.h"
 
-//Creer votre class Engin ici et appeler une fonction start que vous définisser à la classe dans la fonction raylib_start plus bas.
-void raylib_start(void){
-    // Example:
-    // Engine eng = Engine();
-    // eng.start();
+void raylib_start(void) {
+    InitWindow(800, 600, "Asteroids");
+    SetTargetFPS(60);
+
+    Menu menu(800, 600);
+    bool enJeu = false;
+
+    while (!WindowShouldClose()) {
+        if (!enJeu) {
+
+            menu.Draw();
+
+            if (menu.JouerClique()) {
+                enJeu = true;
+            }
+            if (menu.QuitterClique()) {
+                break;
+            }
+        }
+        else {
+
+            Jeu jeu;
+            jeu.Start();
+
+            enJeu = false;
+        }
+    }
+
+    CloseWindow();
 }
