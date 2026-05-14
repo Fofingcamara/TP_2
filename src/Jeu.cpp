@@ -27,7 +27,7 @@ Jeu::~Jeu() {
 void Jeu::SpawnAsteroides() {
     int nombre = 3 + m_Niveau;
 
-    // Difficulté croissante entre 40 000 et 60 000 points
+
     if (m_Score >= 40000 && m_Score <= 60000) {
         nombre += (m_Score - 40000) / 4000;
     }
@@ -91,13 +91,13 @@ void Jeu::Update() {
 
     VerifierCollisions();
 
-    // Vie bonus tous les 10 000 points
+
     if (m_Score >= m_ProchaineBonusVie) {
         m_Vies++;
         m_ProchaineBonusVie += 10000;
     }
 
-    // Score maximum 99 990, repart à 0
+
     if (m_Score > 99990) m_Score = 0;
 
     for (Soucoupe* s : m_Soucoupes) {
